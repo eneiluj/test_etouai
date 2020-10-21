@@ -28,6 +28,7 @@ jobs:
           echo ${{ github.ref }}
           sudo echo $STORE_AUTH_TOKEN > /tmp/plop
           sudo cat /tmp/plop
+          git tag -l --points-at HEAD
           #echo ${{ steps.extract_branch.outputs.branch }}
           #echo `git branch --show-current` "!!!!!"
           zip -r rel.zip plop
