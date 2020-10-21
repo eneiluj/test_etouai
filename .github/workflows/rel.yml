@@ -26,6 +26,7 @@ jobs:
           echo ${{ github.ref }}
           echo $STORE_AUTH_TOKEN
           echo ${{ steps.extract_branch.outputs.branch }}
+          git branch --show-current
           zip -r rel.zip plop
         env:
           STORE_AUTH_TOKEN: ${{secrets.APPSTORE_TOKEN}}
