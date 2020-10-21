@@ -19,7 +19,10 @@ jobs:
           echo ${GITHUB_REF#refs/heads/}
           echo PPPPPPPPPPPP
           echo ${{ github.ref }}
+          echo $STORE_AUTH_TOKEN
           zip -r rel.zip plop
+        env:
+          STORE_AUTH_TOKEN: ${{secrets.APPSTORE_TOKEN}}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
