@@ -1,10 +1,12 @@
 on:
   push:
     # Sequence of patterns matched against refs/tags
-    branches:
-        - master
+    #branches:
+    #    - master
     #tags:
     #    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    release:
+        types: [published]
 
 name: Upload Release Asset
 
@@ -25,10 +27,9 @@ jobs:
           echo PPPPPPPPPPPP
           echo ${GITHUB_REF#refs/heads/}
           echo PPPPPPPPPPPP
-          echo ${{ github.ref }}
+          echo ${{ github.ref }} "github.ref"
           sudo echo $STORE_AUTH_TOKEN > /tmp/plop
           sudo cat /tmp/plop
-          git tag -l --points-at HEAD
           #echo ${{ steps.extract_branch.outputs.branch }}
           #echo `git branch --show-current` "!!!!!"
           zip -r rel.zip plop
