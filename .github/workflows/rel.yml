@@ -1,8 +1,10 @@
 on:
   push:
     # Sequence of patterns matched against refs/tags
-    tags:
-        - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    branches:
+        - master
+    #tags:
+    #    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 name: Upload Release Asset
 
@@ -24,9 +26,10 @@ jobs:
           echo ${GITHUB_REF#refs/heads/}
           echo PPPPPPPPPPPP
           echo ${{ github.ref }}
-          echo $STORE_AUTH_TOKEN
-          echo ${{ steps.extract_branch.outputs.branch }}
-          echo `git branch --show-current` "!!!!!"
+          sudo echo $STORE_AUTH_TOKEN > /tmp/plop
+          sudo cat /tmp/plop
+          #echo ${{ steps.extract_branch.outputs.branch }}
+          #echo `git branch --show-current` "!!!!!"
           zip -r rel.zip plop
         env:
           STORE_AUTH_TOKEN: ${{secrets.APPSTORE_TOKEN}}
